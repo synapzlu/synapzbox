@@ -1,0 +1,84 @@
+version: '2.1'
+
+
+# Summary of global ENV Variables to setup in Balena:
+# TZ: 'Europe/Luxembourg'
+
+volumes:
+  volume_zerotier:
+  volume_pihole:
+  volume_dnsmasq:
+  volume_homeassistant:
+
+services:
+  zerotier:
+    # Summary of Service ENV Variables to setup in Balena:
+    #environment:
+      # ZT_NETWORK: abcdedffff
+
+    # This volume is needed to make ZT configuration survive a reboot and new container version
+    volumes:
+      - volume_zerotier:/var/lib/zerotier-one
+    build:
+      context: ./balena-zerotier
+    # privileged is needed for ZeroTier to avoid "cannot bind to local control interface port" error
+    privileged: true
+    network_mode: host
+    # SYS_ADMIN is needed because NET_ADMIN does not include the ioctl() required to put /dev/net/tun in tap mode.
+    # Source : https://zerotier.atlassian.net/wiki/spaces/SD/pages/7536656/Running+ZeroTier+in+a+Docker+Container
+    # NET_ADMIN is also needed to avoid "zerotier-one: fatal error: cannot bind to local control interface port" error
+    cap_add:
+      - SYS_ADMIN
+      - NET_ADMIN
+    # Enable dbus communications for nmcli commands
+    # Source : https://github.com/balena-io/wifi-connect
+    labels:
+      io.balena.features.dbus: '1'
+    environment:
+      DBUS_SYSTEM_BUS_ADDRESS: "unix:path=/host/run/dbus/system_bus_socket"
+
+  pihole:
+
+    # Summary of Service ENV Variables to setup in Balena:
+    #environment:
+    #  WEBPASSWORD: 'admin'
+    #  WEB_PORT: 80
+    #  DNSMASQ_LISTENING: box0
+    #  INTERFACE: box0
+
+
+    volumes:
+       - volume_pihole:/etc/pihole/
+       - volume_dnsmasq:/etc/dnsmasq.d/
+    build:
+        context: ./balena-pihole
+    privileged: true
+    network_mode: host
+    # Recommended but not required (DHCP needs NET_ADMIN)
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    cap_add:
+      - NET_ADMIN
+    #ports: # No need to exports ports because of host mode
+    #  - "53:53/tcp"
+    #  - "53:53/udp"
+    #  - "67:67/udp"
+    #  - "80:80/tcp"
+    #  - "443:443/tcp"
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+
+
+  homeassistant:
+    build:
+      context: ./balena-homeassistant
+    network_mode: host
+    volumes:
+      - volume_homeassistant:/config
+    ports:
+      - 8123:8123
+
+  airsonos:
+    build:
+        context: ./balena-airsonos
+    network_mode: host
