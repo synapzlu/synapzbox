@@ -1,0 +1,16 @@
+version: '2'
+
+volumes:
+  volume_homeassistant:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: //c/Users/julie/OneDrive/Documents/GitHub/ha-config/
+
+services:
+  homeassistant:
+    build:
+      dockerfile: Dockerfile.dev
+    volumes:
+      - volume_homeassistant:/config
