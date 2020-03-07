@@ -1,9 +1,9 @@
 [submodule "balena-homeassistant"]
 	path = balena-homeassistant
-	url = https://github.com/Juxz/balena-homeassistant.git
+	url = https://github.com/Juxz/balena-homeassistant
 [submodule "balena-zerotier"]
 	path = balena-zerotier
-	url = https://github.com/Juxz/balena-zerotier.git
+	url = https://github.com/Juxz/balena-zerotier
 [submodule "balena-airsonos"]
 	path = balena-airsonos
 	url = https://github.com/Juxz/balena-airsonos
@@ -13,3 +13,6 @@
 [submodule "balena-adguardhome"]
 	path = balena-adguardhome
 	url = https://github.com/Juxz/balena-adguardhome
+[submodule "balena-scpserver"]
+	path = balena-scpserver
+	url = https://github.com/Juxz/balena-scpserver
