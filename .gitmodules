@@ -1,0 +1,15 @@
+[submodule "balena-homeassistant"]
+	path = balena-homeassistant
+	url = https://github.com/Juxz/balena-homeassistant.git
+[submodule "balena-zerotier"]
+	path = balena-zerotier
+	url = https://github.com/Juxz/balena-zerotier.git
+[submodule "balena-airsonos"]
+	path = balena-airsonos
+	url = https://github.com/Juxz/balena-airsonos
+[submodule "balena-knxinside"]
+	path = balena-knxinside
+	url = https://github.com/Juxz/balena-knxinside
+[submodule "balena-adguardhome"]
+	path = balena-adguardhome
+	url = https://github.com/Juxz/balena-adguardhome
