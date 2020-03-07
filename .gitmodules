@@ -13,6 +13,3 @@
 [submodule "balena-adguardhome"]
 	path = balena-adguardhome
 	url = https://github.com/Juxz/balena-adguardhome
-[submodule "balena-scpserver"]
-	path = balena-scpserver
-	url = https://github.com/Juxz/balena-scpserver
