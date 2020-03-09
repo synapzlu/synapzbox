@@ -10,3 +10,4 @@ tts
 
 # Ignore container repos
 #balena-*
+dev.code-workspace
