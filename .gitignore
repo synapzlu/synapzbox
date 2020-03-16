@@ -8,6 +8,27 @@
 .google.token
 tts
 
-# Ignore container repos
-#balena-*
+# Ignore container repos except scripts folders
+!application-*/
+
+balena-adguardhome/*
+!balena-adguardhome/scripts/
+
+balena-airsonos/*
+!balena-airsonos/scripts/
+
+balena-homeassistant/*
+!balena-homeassistant/scripts/
+
+balena-knxinside/*
+!balena-knxinside/scripts/
+
+balena-scpserver/*
+!balena-scpserver/scripts/
+
+balena-zerotier/*
+!balena-zerotier/scripts/
+
+
+# Ignore IDE settings
 dev.code-workspace
