@@ -16,3 +16,6 @@
 [submodule "balena-scpserver"]
 	path = balena-scpserver
 	url = https://github.com/Juxz/balena-scpserver
+[submodule "balena-unify"]
+	path = balena-unify
+	url = https://github.com/Juxz/balena-unify.git
